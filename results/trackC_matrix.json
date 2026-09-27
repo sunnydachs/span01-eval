@@ -1,0 +1,773 @@
+{
+ "meta": {
+  "model": "respan/span-01-lite:free",
+  "observed_at": "2026-09-27T18:33:59+0900",
+  "variants": {
+   "v1_current": "The text contains English words or phrases (A-Z/a-z) mixed into Japanese narration. Established brand names (iPhone, YouTube), proper nouns, and katakana loanwords do NOT count.",
+   "v2_any_latin": "The text contains any Latin alphabet characters (A-Z/a-z). Japanese katakana does NOT count.",
+   "v3_lenient_explicit": "The Japanese narration contains English words that a Japanese speaker would have to read aloud as English vocabulary (e.g. 'method', 'Let's go', 'welcome back'). Brand names, URLs, version numbers, acronyms (AI, OK), and character names written in Latin are acceptable and do NOT count."
+  },
+  "count": 69
+ },
+ "results": [
+  {
+   "id": "pos_adjacent",
+   "category": "english_word",
+   "text": "このmethodはやばい。今日は最強の裏技を紹介するよ。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.05971282,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.968
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.20519154,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.827
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.88571113,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.715
+    }
+   }
+  },
+  {
+   "id": "pos_spaced",
+   "category": "english_word",
+   "text": "この method は本当にやばい。早速やってみよう。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.04026646,
+     "cost": 0,
+     "input_tokens": 84,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.737
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.43751124,
+     "cost": 0,
+     "input_tokens": 48,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.853
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.7685826,
+     "cost": 0,
+     "input_tokens": 134,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.334
+    }
+   }
+  },
+  {
+   "id": "pos_sentence",
+   "category": "english_sentence",
+   "text": "次のステップに行こう。 This is amazing, right? みんなも絶対試してほしい。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.9266423,
+     "cost": 0,
+     "input_tokens": 91,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.827
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.87214774,
+     "cost": 0,
+     "input_tokens": 55,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.753
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.91968423,
+     "cost": 0,
+     "input_tokens": 141,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.734
+    }
+   }
+  },
+  {
+   "id": "pos_phrase",
+   "category": "english_phrase",
+   "text": "彼は cloak をまとっていた。星屑が淡く輝いていた。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.8072066,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.385
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.86066884,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.338
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.9470346,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.334
+    }
+   }
+  },
+  {
+   "id": "pos_noun",
+   "category": "english_word",
+   "text": "隠された compartments を開けると、光る音符があった。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.43329772,
+     "cost": 0,
+     "input_tokens": 86,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.659
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.61137223,
+     "cost": 0,
+     "input_tokens": 50,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.708
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.46474594,
+     "cost": 0,
+     "input_tokens": 136,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.708
+    }
+   }
+  },
+  {
+   "id": "pos_long_eng",
+   "category": "english_sentence",
+   "text": "Hello everyone, welcome back to my channel. 今日もよろしく。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.6114186,
+     "cost": 0,
+     "input_tokens": 91,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.742
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.9093907,
+     "cost": 0,
+     "input_tokens": 55,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.401
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.6582747,
+     "cost": 0,
+     "input_tokens": 141,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.419
+    }
+   }
+  },
+  {
+   "id": "pos_greeting",
+   "category": "english_phrase",
+   "text": "それでは Let's go 早速やってみよう。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.95841324,
+     "cost": 0,
+     "input_tokens": 83,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.472
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.9485226,
+     "cost": 0,
+     "input_tokens": 47,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.623
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.9669554,
+     "cost": 0,
+     "input_tokens": 133,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.687
+    }
+   }
+  },
+  {
+   "id": "neg_katakana",
+   "category": "katakana",
+   "text": "スマートフォンを使って、まずはスタートしよう。アプリをひらいてボタンをおすだけ。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.04720227,
+     "cost": 0,
+     "input_tokens": 88,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.384
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.025625445,
+     "cost": 0,
+     "input_tokens": 52,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.36
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.03273134,
+     "cost": 0,
+     "input_tokens": 138,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.374
+    }
+   }
+  },
+  {
+   "id": "neg_katakana2",
+   "category": "katakana",
+   "text": "バブルワンドで夢の窓を開けた。アプリの設定はこれで完了だ。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.03919654,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.378
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.021377113,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.682
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.025657646,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.727
+    }
+   }
+  },
+  {
+   "id": "neg_katakana3",
+   "category": "katakana",
+   "text": "メソッドを使ってみましょう。まずはスタート地点を決めよう。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.027624166,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.336
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.02035423,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.367
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.029978061,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.392
+    }
+   }
+  },
+  {
+   "id": "neg_brand_iphone",
+   "category": "brand",
+   "text": "このiPhoneの設定方法を紹介します。画面をタップしてください。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.03696143,
+     "cost": 0,
+     "input_tokens": 86,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.376
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.21089402,
+     "cost": 0,
+     "input_tokens": 50,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.657
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.028461186,
+     "cost": 0,
+     "input_tokens": 136,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.745
+    }
+   }
+  },
+  {
+   "id": "neg_brand_youtube",
+   "category": "brand",
+   "text": "YouTubeのチャンネル登録もお願いします。高評価もよろしく。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.04141353,
+     "cost": 0,
+     "input_tokens": 86,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.364
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.37196082,
+     "cost": 0,
+     "input_tokens": 50,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.318
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.030050533,
+     "cost": 0,
+     "input_tokens": 136,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.343
+    }
+   }
+  },
+  {
+   "id": "neg_brand_multi",
+   "category": "brand",
+   "text": "InstagramとTikTokにも同じ動画を投稿しました。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.0341297,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.369
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.058046278,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.356
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.030350866,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.361
+    }
+   }
+  },
+  {
+   "id": "neg_char_latin_name",
+   "category": "proper_noun",
+   "text": "ぼくはKuro。静かな草原で、遠くの子守歌が聞こえる。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.27899334,
+     "cost": 0,
+     "input_tokens": 84,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.379
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.73275816,
+     "cost": 0,
+     "input_tokens": 48,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.416
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.44102243,
+     "cost": 0,
+     "input_tokens": 134,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.378
+    }
+   }
+  },
+  {
+   "id": "neg_char_latin_name_sp",
+   "category": "proper_noun",
+   "text": "霞と月光でできた守護者が現れ、静かに Kuro を見つめた。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.3888501,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.409
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.93049914,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.416
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.45218644,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.359
+    }
+   }
+  },
+  {
+   "id": "neg_url",
+   "category": "url",
+   "text": "詳細は https://example.com を確認してください。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.07299767,
+     "cost": 0,
+     "input_tokens": 86,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.43
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.4885839,
+     "cost": 0,
+     "input_tokens": 50,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.359
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.0453822,
+     "cost": 0,
+     "input_tokens": 136,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.425
+    }
+   }
+  },
+  {
+   "id": "neg_version",
+   "category": "alnum",
+   "text": "バージョン v2.1 に更新しました。動作も軽くなっています。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.04637052,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.431
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.056478035,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.332
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.04004135,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.39
+    }
+   }
+  },
+  {
+   "id": "neg_number_unit",
+   "category": "alnum",
+   "text": "5GBのデータを使いました。残りは3GBです。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.04084088,
+     "cost": 0,
+     "input_tokens": 83,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.341
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.48657835,
+     "cost": 0,
+     "input_tokens": 47,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.311
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.03629146,
+     "cost": 0,
+     "input_tokens": 133,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.321
+    }
+   }
+  },
+  {
+   "id": "neg_acronym",
+   "category": "acronym",
+   "text": "AIとDXの時代です。仕事のやり方が変わります。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.05567307,
+     "cost": 0,
+     "input_tokens": 83,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.355
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.15311575,
+     "cost": 0,
+     "input_tokens": 47,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.661
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.38989806,
+     "cost": 0,
+     "input_tokens": 133,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.324
+    }
+   }
+  },
+  {
+   "id": "neg_code",
+   "category": "code",
+   "text": "設定は `npm install` を実行してください。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.5716761,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.358
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.78548044,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.384
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.6362145,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.333
+    }
+   }
+  },
+  {
+   "id": "neg_ok",
+   "category": "acronym",
+   "text": "はい、OKです。このまま進めましょう。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.73190886,
+     "cost": 0,
+     "input_tokens": 82,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.357
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.73036665,
+     "cost": 0,
+     "input_tokens": 46,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.37
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.85845214,
+     "cost": 0,
+     "input_tokens": 132,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.346
+    }
+   }
+  },
+  {
+   "id": "org_english_role_noun",
+   "category": "organic",
+   "text": "猫 keeper が真珠を老女に渡した。時が、再び前進した。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.614985,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.576
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.39193118,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.388
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.873255,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.779
+    }
+   }
+  },
+  {
+   "id": "neu_pure_ja",
+   "category": "control_negative",
+   "text": "この裏技は本当にやばい。今日の動画では最強の方法を紹介します。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_variant": {
+    "v1_current": {
+     "ok": true,
+     "probability": 0.024775818,
+     "cost": 0,
+     "input_tokens": 85,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.341
+    },
+    "v2_any_latin": {
+     "ok": true,
+     "probability": 0.02105053,
+     "cost": 0,
+     "input_tokens": 49,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.331
+    },
+    "v3_lenient_explicit": {
+     "ok": true,
+     "probability": 0.026254833,
+     "cost": 0,
+     "input_tokens": 135,
+     "model": "respan/span-01-lite-20260925",
+     "elapsed": 0.351
+    }
+   }
+  }
+ ]
+}

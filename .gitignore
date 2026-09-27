@@ -1,0 +1,9 @@
+# 実データ由来の成果物はリポジトリに含めない（第三者コーパスの原文・グループ名を含むため）
+corpus/items.jsonl
+results/trackA*.json
+results/raw_*.json
+results/rerun.log
+
+__pycache__/
+*.pyc
+.venv/
