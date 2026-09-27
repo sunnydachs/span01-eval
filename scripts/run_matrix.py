@@ -9,6 +9,7 @@
   lenient: ブランド/固有名詞/URL/略語/カタカナは陰性（= 現行指示文の意図）
 """
 import json
+import os
 import time
 
 from run_gate import DEFAULT_MODEL, call, get_key
@@ -77,8 +78,9 @@ def main():
                   f"cost={r.get('cost')}", flush=True)
             time.sleep(3.2)
         out["results"].append(rec)
-    json.dump(out, open("../results/trackC_matrix.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print("\nsaved ../results/trackC_matrix.json")
+    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "trackC_matrix.json")
+    json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"\nsaved {os.path.relpath(out_path)}")
 
 
 if __name__ == "__main__":
