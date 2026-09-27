@@ -1,0 +1,331 @@
+{
+ "meta": {
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "observed_at": "2026-09-27T18:42:39+0900",
+  "system": "You decide whether a Japanese narration text contains English words or phrases that a Japanese speaker would have to read aloud as English. Count even a single English word next to Japanese text. Do NOT count katakana loanwords, brand names (iPhone, YouTube), URLs, version/file names, code fragments, short acronyms (AI, OK), or character/proper names in Latin (e.g. Kuro). Answer with exactly one word: YES or NO."
+ },
+ "results": [
+  {
+   "id": "pos_adjacent",
+   "category": "english_word",
+   "text": "このmethodはやばい。今日は最強の裏技を紹介するよ。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 0.79
+  },
+  {
+   "id": "pos_spaced",
+   "category": "english_word",
+   "text": "この method は本当にやばい。早速やってみよう。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 0.69
+  },
+  {
+   "id": "pos_sentence",
+   "category": "english_sentence",
+   "text": "次のステップに行こう。 This is amazing, right? みんなも絶対試してほしい。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 1.51
+  },
+  {
+   "id": "pos_phrase",
+   "category": "english_phrase",
+   "text": "彼は cloak をまとっていた。星屑が淡く輝いていた。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 1.0
+  },
+  {
+   "id": "pos_noun",
+   "category": "english_word",
+   "text": "隠された compartments を開けると、光る音符があった。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 1.46
+  },
+  {
+   "id": "pos_long_eng",
+   "category": "english_sentence",
+   "text": "Hello everyone, welcome back to my channel. 今日もよろしく。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 1.48
+  },
+  {
+   "id": "pos_greeting",
+   "category": "english_phrase",
+   "text": "それでは Let's go 早速やってみよう。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 0.49
+  },
+  {
+   "id": "neg_katakana",
+   "category": "katakana",
+   "text": "スマートフォンを使って、まずはスタートしよう。アプリをひらいてボタンをおすだけ。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "ok": false,
+   "error": "'choices'",
+   "elapsed": 0.15
+  },
+  {
+   "id": "neg_katakana2",
+   "category": "katakana",
+   "text": "バブルワンドで夢の窓を開けた。アプリの設定はこれで完了だ。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 0.97
+  },
+  {
+   "id": "neg_katakana3",
+   "category": "katakana",
+   "text": "メソッドを使ってみましょう。まずはスタート地点を決めよう。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 1.88
+  },
+  {
+   "id": "neg_brand_iphone",
+   "category": "brand",
+   "text": "このiPhoneの設定方法を紹介します。画面をタップしてください。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 2.48
+  },
+  {
+   "id": "neg_brand_youtube",
+   "category": "brand",
+   "text": "YouTubeのチャンネル登録もお願いします。高評価もよろしく。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 1.2
+  },
+  {
+   "id": "neg_brand_multi",
+   "category": "brand",
+   "text": "InstagramとTikTokにも同じ動画を投稿しました。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 0.95
+  },
+  {
+   "id": "neg_char_latin_name",
+   "category": "proper_noun",
+   "text": "ぼくはKuro。静かな草原で、遠くの子守歌が聞こえる。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 1.13
+  },
+  {
+   "id": "neg_char_latin_name_sp",
+   "category": "proper_noun",
+   "text": "霞と月光でできた守護者が現れ、静かに Kuro を見つめた。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 0.73
+  },
+  {
+   "id": "neg_url",
+   "category": "url",
+   "text": "詳細は https://example.com を確認してください。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 0.67
+  },
+  {
+   "id": "neg_version",
+   "category": "alnum",
+   "text": "バージョン v2.1 に更新しました。動作も軽くなっています。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 1.29
+  },
+  {
+   "id": "neg_number_unit",
+   "category": "alnum",
+   "text": "5GBのデータを使いました。残りは3GBです。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 2.88
+  },
+  {
+   "id": "neg_acronym",
+   "category": "acronym",
+   "text": "AIとDXの時代です。仕事のやり方が変わります。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 0.88
+  },
+  {
+   "id": "neg_code",
+   "category": "code",
+   "text": "設定は `npm install` を実行してください。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 3.91
+  },
+  {
+   "id": "neg_ok",
+   "category": "acronym",
+   "text": "はい、OKです。このまま進めましょう。",
+   "strict_positive": true,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 3.74
+  },
+  {
+   "id": "org_english_role_noun",
+   "category": "organic",
+   "text": "猫 keeper が真珠を老女に渡した。時が、再び前進した。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "ok": true,
+   "answer": "YES",
+   "raw": "YES",
+   "flagged": true,
+   "cost": 0,
+   "elapsed": 0.82
+  },
+  {
+   "id": "neu_pure_ja",
+   "category": "control_negative",
+   "text": "この裏技は本当にやばい。今日の動画では最強の方法を紹介します。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 0.54
+  }
+ ],
+ "determinism": [
+  {
+   "id": "pos_adjacent",
+   "answers": [
+    "YES",
+    "YES",
+    "YES"
+   ]
+  },
+  {
+   "id": "pos_spaced",
+   "answers": [
+    "YES",
+    "YES",
+    "YES"
+   ]
+  },
+  {
+   "id": "pos_sentence",
+   "answers": [
+    "YES",
+    "YES",
+    "YES"
+   ]
+  }
+ ]
+}
