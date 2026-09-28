@@ -43,33 +43,40 @@
 - n=23・各1回・信頼区間なし。0.93 と 1.00 の差は1ケース。
 - gateの指示文は同じ23件で選んだ（hold-out なし）。
 - ラベルは単一作業者。1件は実行後に修正した（`LABELS.md` に記録）。
-- 実コーパスは非公開のため、Track A の再現には自分のコーパスが必要。
+- 実コーパスは非公開のため、その Track A 数値そのものは第三者が再測定できません。パイプライン自体は同梱のサロゲートコーパス（下記）で最後まで再現可能で、実データの匿名化サブセットは `results/public/trackA_anon.json` に同梱しています。
 - `AUDIT.md` に、元の数値の欠陥を見つけた5モデル外部レビューと修正内容を記録している。
 
 ## セットアップ
 
 Python 3.11以上（標準ライブラリのみ — 依存なし）。
 
+`.env` にLLM認証情報を置きます（OpenAI互換のエンドポイントなら何でも）:
+
 ```bash
-# APIキー: 環境変数、またはリポジトリ直下の .env（git対象外）
-export SPAN01_API_KEY=sk-or-v1-...          # または:
-echo 'SPAN01_API_KEY=sk-or-v1-...' > .env
+LLM_API_KEY=sk-...
+LLM_BASE_URL=https://your-openai-compatible-endpoint.example.com   # 任意。既定はOpenRouter
 ```
 
-スクリプトは `SPAN01_API_KEY` または `OPENROUTER_API_KEY` を読みます — まず環境変数、次にリポジトリ直下の `.env`（`scripts/envconfig.py`）。キーが出力に書かれることはありません。
+…または環境変数として export してください。`scripts/envconfig.py` は `LLM_API_KEY` と `LLM_BASE_URL` を「環境変数 → リポジトリ直下の `.env`（git対象外）」の順に読みます。`SPAN01_API_KEY` / `OPENROUTER_API_KEY` も後方互換として使えます。キーが出力に書かれることはありません。
 
 ## 再現
 
-実ナレーションコーパスは第三者コンテンツのため非公開。Track A には自分のコーパスが必要です。`*/*/story.json`（`{"scenes": [{"narration": ...}]}`）を含むツリーのルートを `SPAN01_CORPUS_SRC` に指定します:
+### 同梱のサロゲートコーパスで全パイプライン（非公開データ不要）
 
 ```bash
-export SPAN01_CORPUS_SRC=/path/to/corpus-root   # Track A 用
-export SPAN01_EXEMPT=CharName                  # lenient基準で許容するトークン（カンマ区切り）
+python corpus/make_public_corpus.py --out public_corpus    # 210件の決定的な合成ストーリーを生成
+export SPAN01_CORPUS_SRC=public_corpus
+export SPAN01_EXEMPT=Kuro                                 # lenient基準で許容するトークン（カンマ区切り）
 
-python corpus/build_corpus.py                  # -> corpus/items.jsonl
-bash scripts/rerun_all.sh                      # 全トラックを一括実行
-python scripts/run_baselines.py --json         # 正規表現ベースライン＋閾値スイープ（オフライン）
+bash scripts/rerun_all.sh                                  # 全トラックを一括実行
+python scripts/run_baselines.py --json                     # 正規表現ベースライン＋閾値スイープ（オフライン）
 ```
+
+サロゲートコーパスは実コーパスと同じ形状（210件、うちラテン文字含有22件、`*/*/story.json` 配置）で、決定的（seed 42）です。Track A を含むパイプライン全体を、誰でも最初から最後まで実行できます。
+
+### 自分のコーパスで実行
+
+`{"scenes": [{"narration": ...}]}` を含む `*/*/story.json` ツリーのルートを `SPAN01_CORPUS_SRC` に指定し、同じコマンドを実行します。
 
 個別トラック（`reports/` に1ファイルずつ）:
 
@@ -80,7 +87,7 @@ python tune_instruction.py --instructions @../candidates/v4_production.txt \
     --out ../results/tune_v4.json                                            # 同じケースで v4
 python run_gate.py --sample-neg 30 \
     --instructions "$(cat ../candidates/v4_production.txt)" \
-    --out ../results/trackA_v4.json                                          # Track A: 実コーパス
+    --out ../results/trackA_v4.json                                          # Track A: コーパス実行
 python run_llm_baseline.py --out ../results/trackD_llm.json                  # Track D: chatベースライン
 python analyze.py --results ../results/trackA_v4.json                       # Track A の表
 python calibrate.py --synth ../results/tune_v4.json \
@@ -89,18 +96,22 @@ python calibrate.py --synth ../results/tune_v4.json \
 
 `analyze.py` / `calibrate.py` は環境変数 `SPAN01_EXEMPT` を拾います。上書きする場合は `--exempt` を明示的に渡してください。
 
-レポートの数値はすべて `results/` のJSONに遡ります。`results/public/trackA_anon.json` は実データの匿名化サブセット（id匿名化・本文除去は `scripts/sanitize_results.py`）。
+### 再現できるもの・できないもの
+
+- **パイプライン・ハーネス・解析: 完全に再現可能** — 同梱のサロゲートコーパスなら非公開データなしで最後まで動きます。
+- **`reports/` の実データの数値そのもの**: 実コーパスは第三者コンテンツのため非公開を維持します。同梱のアーティファクト（`results/public/trackA_anon.json`。id匿名化・本文除去は `scripts/sanitize_results.py`）により、公開済みの確率から Track A の各指標を再導出することは誰にでもできますが、元テキストでモデルを再実行することはこのリポジトリ外ではできません。
+- レポートの数値はすべて `results/` のJSONに遡ります。
 
 ## データの扱い
 
-- 実コーパスの原文とグループ名はコミットしない（`.gitignore`）。匿名化サブセットは `results/public/` に同梱。
-- 合成ケース（`scripts/run_matrix.py` の `CASES`）は本リポジトリの著作物。
+- 実コーパスの原文とグループ名は絶対にコミットしない（`.gitignore`）。匿名化サブセットは `results/public/` に同梱。
+- 合成ケース（`scripts/run_matrix.py` の `CASES`）とサロゲートコーパス（`corpus/make_public_corpus.py`）は本リポジトリの著作物。
 
 ## ディレクトリ
 
 | パス | 内容 |
 |---|---|
-| `corpus/` | `build_corpus.py` — `story.json` ツリーからナレーション項目を抽出 |
+| `corpus/` | `build_corpus.py` — `story.json` ツリーから項目を抽出。`make_public_corpus.py` — 決定的なサロゲートコーパス生成器 |
 | `scripts/` | 実行系（`run_gate`, `run_matrix`, `tune_instruction`, `run_llm_baseline`, `run_baselines`）＋解析系（`analyze`, `calibrate`, `sanitize_results`, `envconfig`） |
 | `results/` | トラック別の生JSON（実コーパス系はgit対象外） |
 | `reports/` | トラック別のレポート + `summary.md` |

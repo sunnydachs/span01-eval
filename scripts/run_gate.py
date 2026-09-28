@@ -18,9 +18,9 @@ import time
 import urllib.error
 import urllib.request
 
-from envconfig import get_key
+from envconfig import get_base_url, get_key
 
-DECISIONS_URL = "https://openrouter.ai/api/alpha/decisions"
+DECISIONS_URL_DEFAULT = "/alpha/decisions"
 DEFAULT_MODEL = "respan/span-01-lite:free"
 DEFAULT_KEY = "mixed_lang"
 DEFAULT_INSTRUCTIONS = (
@@ -34,11 +34,12 @@ DEFAULT_INSTRUCTIONS = (
 )
 
 
-def call(text, key, model, instructions, question_key, timeout=30):
+def call(text, key, model, instructions, question_key, timeout=30, base_url=None):
+    url = (base_url or get_base_url()) + DECISIONS_URL_DEFAULT
     body = {"model": model, "state": text,
             "questions": {question_key: {"type": "noul", "instructions": instructions}}}
     req = urllib.request.Request(
-        DECISIONS_URL, data=json.dumps(body).encode(),
+        url, data=json.dumps(body).encode(),
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"}, method="POST")
     t0 = time.time()
     try:

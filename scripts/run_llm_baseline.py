@@ -11,10 +11,10 @@ import time
 import urllib.error
 import urllib.request
 
-from envconfig import get_key
+from envconfig import get_base_url, get_key
 from run_matrix import CASES
 
-CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
+CHAT_PATH = "/v1/chat/completions"
 MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
 LAT = re.compile(r"[A-Za-z]{2,}")
 
@@ -27,11 +27,12 @@ SYSTEM = (
 )
 
 
-def ask(text, key, model=MODEL, temperature=0.0, timeout=120):
+def ask(text, key, model=MODEL, temperature=0.0, timeout=120, base_url=None):
     body = {"model": model, "temperature": temperature, "max_tokens": 512,
             "messages": [{"role": "system", "content": SYSTEM},
                          {"role": "user", "content": text}]}
-    req = urllib.request.Request(CHAT_URL, data=json.dumps(body).encode(),
+    req = urllib.request.Request((base_url or get_base_url()) + CHAT_PATH,
+        data=json.dumps(body).encode(),
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"}, method="POST")
     t0 = time.time()
     try:
