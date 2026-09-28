@@ -12,7 +12,8 @@ import json
 import os
 import time
 
-from run_gate import DEFAULT_MODEL, call, get_key
+from run_gate import DEFAULT_MODEL, call
+from envconfig import get_key
 
 # (id, category, text, strict_positive, lenient_positive)
 CASES = [

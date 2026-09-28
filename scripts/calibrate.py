@@ -5,6 +5,7 @@
 """
 import argparse
 import json
+import os
 import re
 
 LEGIT: set = set()  # 実行時に --exempt で指定（lenient基準）
@@ -37,7 +38,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--synth", default="../results/tune_v4.json")
     ap.add_argument("--real", default="../results/trackA_v4.json")
-    ap.add_argument("--exempt", default="", help="lenient基準で固有名詞扱いにするトークン(カンマ区切り)")
+    ap.add_argument("--exempt", default=os.environ.get("SPAN01_EXEMPT", ""),
+                    help="lenient基準で固有名詞扱いにするトークン(カンマ区切り)。未指定なら環境変数 SPAN01_EXEMPT")
     args = ap.parse_args()
     LEGIT = {t.strip() for t in args.exempt.split(",") if t.strip()}
     rows = load_synth(args.synth) + load_real(args.real)

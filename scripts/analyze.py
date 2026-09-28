@@ -12,6 +12,7 @@
 """
 import argparse
 import json
+import os
 import re
 
 LATIN = re.compile(r"[A-Za-z]{2,}")
@@ -47,7 +48,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", required=True)
     ap.add_argument("--threshold", type=float, default=0.5)
-    ap.add_argument("--exempt", default="", help="lenient基準で固有名詞扱いにするトークン(カンマ区切り)")
+    ap.add_argument("--exempt", default=os.environ.get("SPAN01_EXEMPT", ""),
+                    help="lenient基準で固有名詞扱いにするトークン(カンマ区切り)。未指定なら環境変数 SPAN01_EXEMPT")
     args = ap.parse_args()
     exempt = frozenset(t.strip() for t in args.exempt.split(",") if t.strip())
     data = json.load(open(args.results))

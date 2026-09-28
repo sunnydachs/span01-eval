@@ -18,6 +18,8 @@ import time
 import urllib.error
 import urllib.request
 
+from envconfig import get_key
+
 DECISIONS_URL = "https://openrouter.ai/api/alpha/decisions"
 DEFAULT_MODEL = "respan/span-01-lite:free"
 DEFAULT_KEY = "mixed_lang"
@@ -30,23 +32,6 @@ DEFAULT_INSTRUCTIONS = (
     "URLs, version or file names, code fragments, short acronyms such as AI, DX, OK, and "
     "character or proper names written in Latin (for example the character name Kuro)."
 )
-ENV_CANDIDATES = [
-    os.path.expanduser("~/.hermes/.env"),
-]
-
-
-def get_key():
-    k = os.getenv("OPENROUTER_API_KEY")
-    if k:
-        return k, "env"
-    for p in ENV_CANDIDATES:
-        try:
-            for line in open(p):
-                if line.startswith("OPENROUTER_API_KEY="):
-                    return line.split("=", 1)[1].strip().strip('"').strip("'"), p
-        except OSError:
-            pass
-    raise SystemExit("OPENROUTER_API_KEY not found")
 
 
 def call(text, key, model, instructions, question_key, timeout=30):
@@ -93,6 +78,7 @@ def main():
     items = load_items()
     pos = [it for it in items if it["has_latin"]]
     neg = [it for it in items if not it["has_latin"]]
+    exempt = {t.strip() for t in (os.environ.get("SPAN01_EXEMPT") or "").split(",") if t.strip()}
     if args.all:
         sel = items
     elif args.all_class:
@@ -104,6 +90,7 @@ def main():
     print(f"key<{src}> model={args.model} selected={len(sel)} (pos={len(pos)})", flush=True)
     out = {"meta": {"model": args.model, "question_key": args.question_key,
                     "threshold": args.threshold, "instructions": args.instructions,
+                    "exempt": sorted(exempt), "seed": args.seed,
                     "observed_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "count": len(sel)},
            "results": []}
     for i, it in enumerate(sel, 1):

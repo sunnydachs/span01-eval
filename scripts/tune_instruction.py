@@ -8,7 +8,8 @@ import json
 import re
 import time
 
-from run_gate import DEFAULT_MODEL, call, get_key
+from run_gate import DEFAULT_MODEL, call
+from envconfig import get_key
 from run_matrix import CASES
 
 LAT = re.compile(r"[A-Za-z]{2,}")
