@@ -43,33 +43,40 @@ Key findings:
 - n=23, single runs, no confidence intervals; the 0.93-vs-1.00 gap is one case.
 - The gate instruction was tuned on the same 23 cases (no hold-out).
 - Labels come from a single annotator; one label was corrected after the run (recorded in `LABELS.md`).
-- The real corpus is private, so Track A needs your own corpus to reproduce.
+- The real corpus is private, so its exact Track A numbers cannot be re-measured by a third party; the pipeline is fully reproducible on the bundled surrogate corpus (below) and the real-data subset ships anonymized in `results/public/trackA_anon.json`.
 - `AUDIT.md` documents the five-model external review that caught the original numbers' defects, and what was fixed.
 
 ## Setup
 
 Python 3.11+ (stdlib only — no dependencies).
 
+Create a `.env` with your LLM credentials (any OpenAI-compatible endpoint):
+
 ```bash
-# API key: environment variable, or a repo-root .env (git-ignored)
-export SPAN01_API_KEY=sk-or-v1-...          # or:
-echo 'SPAN01_API_KEY=sk-or-v1-...' > .env
+LLM_API_KEY=sk-...
+LLM_BASE_URL=https://your-openai-compatible-endpoint.example.com   # optional; defaults to OpenRouter
 ```
 
-The scripts read the key from `SPAN01_API_KEY` or `OPENROUTER_API_KEY` — environment first, then a repo-root `.env` (`scripts/envconfig.py`). The key is never written to outputs.
+…or export them. `scripts/envconfig.py` reads `LLM_API_KEY` and `LLM_BASE_URL` from the environment or the repo-root `.env` (git-ignored); `SPAN01_API_KEY` / `OPENROUTER_API_KEY` work as fallbacks. The key is never written to outputs.
 
 ## Reproduce
 
-The real narration corpus is private (third-party content), so Track A needs your own corpus. Point `SPAN01_CORPUS_SRC` at a tree containing `*/*/story.json` files (`{"scenes": [{"narration": ...}]}`):
+### Full pipeline with the bundled surrogate corpus (no private data needed)
 
 ```bash
-export SPAN01_CORPUS_SRC=/path/to/corpus-root   # for Track A
-export SPAN01_EXEMPT=CharName                  # lenient-label exempt tokens, comma-separated
+python corpus/make_public_corpus.py --out public_corpus    # 210 deterministic synthetic stories
+export SPAN01_CORPUS_SRC=public_corpus
+export SPAN01_EXEMPT=Kuro                                 # lenient-label exempt tokens, comma-separated
 
-python corpus/build_corpus.py                  # -> corpus/items.jsonl
-bash scripts/rerun_all.sh                      # all tracks, end to end
-python scripts/run_baselines.py --json         # regex baselines + threshold sweep (offline)
+bash scripts/rerun_all.sh                                  # all tracks, end to end
+python scripts/run_baselines.py --json                     # regex baselines + threshold sweep (offline)
 ```
+
+The surrogate corpus mirrors the real one's shape (210 items, 22 with Latin tokens, `*/*/story.json` layout) and is deterministic (seed 42) — anyone can run the entire pipeline, including Track A, start to finish.
+
+### With your own corpus
+
+Point `SPAN01_CORPUS_SRC` at a tree containing `*/*/story.json` files (`{"scenes": [{"narration": ...}]}`) and run the same commands.
 
 Individual tracks (one report each in `reports/`):
 
@@ -80,7 +87,7 @@ python tune_instruction.py --instructions @../candidates/v4_production.txt \
     --out ../results/tune_v4.json                                            # v4 on the same cases
 python run_gate.py --sample-neg 30 \
     --instructions "$(cat ../candidates/v4_production.txt)" \
-    --out ../results/trackA_v4.json                                          # Track A: real corpus
+    --out ../results/trackA_v4.json                                          # Track A: corpus run
 python run_llm_baseline.py --out ../results/trackD_llm.json                  # Track D: chat baseline
 python analyze.py --results ../results/trackA_v4.json                       # Track A tables
 python calibrate.py --synth ../results/tune_v4.json \
@@ -89,18 +96,22 @@ python calibrate.py --synth ../results/tune_v4.json \
 
 `analyze.py` / `calibrate.py` pick up `SPAN01_EXEMPT` from the environment; pass `--exempt` explicitly to override.
 
-Every report number traces to a JSON in `results/`. `results/public/trackA_anon.json` is the anonymized real-data subset (ids anonymized, narration stripped via `scripts/sanitize_results.py`).
+### What is and is not reproducible
+
+- **Pipeline, harness, analysis: fully reproducible** — on the bundled surrogate corpus with no private data.
+- **The exact real-data numbers in `reports/`**: the real corpus is third-party content and stays private. The committed artifacts (`results/public/trackA_anon.json`, anonymized: ids remapped, narration stripped by `scripts/sanitize_results.py`) let anyone re-derive the Track A metrics from the published probabilities, but re-running the model on the original texts is not possible outside this repo.
+- Every report number traces to a JSON in `results/`.
 
 ## Data handling
 
-- The real corpus's original text and group names are not committed (`.gitignore`); the anonymized subset ships in `results/public/`.
-- The synthetic cases (`CASES` in `scripts/run_matrix.py`) are original to this repo.
+- The real corpus's original text and group names are never committed (`.gitignore`); the anonymized subset ships in `results/public/`.
+- The synthetic cases (`CASES` in `scripts/run_matrix.py`) and the surrogate corpus (`corpus/make_public_corpus.py`) are original to this repo.
 
 ## Repository layout
 
 | path | contents |
 |---|---|
-| `corpus/` | `build_corpus.py` — extract narration items from `story.json` trees |
+| `corpus/` | `build_corpus.py` — extract items from `story.json` trees; `make_public_corpus.py` — deterministic surrogate corpus generator |
 | `scripts/` | runners (`run_gate`, `run_matrix`, `tune_instruction`, `run_llm_baseline`, `run_baselines`) + analysis (`analyze`, `calibrate`, `sanitize_results`, `envconfig`) |
 | `results/` | raw JSON artifacts per track (real-corpus files git-ignored) |
 | `reports/` | one markdown report per track + `summary.md` |

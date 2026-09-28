@@ -1,6 +1,9 @@
 # API credentials — never commit
 .env
 
+# generated surrogate corpus (rebuild with corpus/make_public_corpus.py)
+public_corpus/
+
 # 実データ由来の成果物（第三者コーパスの原文・グループ名を含むため）
 corpus/items.jsonl
 results/trackA*.json
