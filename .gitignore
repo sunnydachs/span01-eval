@@ -1,4 +1,7 @@
-# 実データ由来の成果物はリポジトリに含めない（第三者コーパスの原文・グループ名を含むため）
+# API credentials — never commit
+.env
+
+# 実データ由来の成果物（第三者コーパスの原文・グループ名を含むため）
 corpus/items.jsonl
 results/trackA*.json
 results/raw_*.json

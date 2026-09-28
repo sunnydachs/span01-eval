@@ -11,7 +11,7 @@ import time
 import urllib.error
 import urllib.request
 
-from run_gate import get_key
+from envconfig import get_key
 from run_matrix import CASES
 
 CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"

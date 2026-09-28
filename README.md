@@ -1,76 +1,113 @@
-# span01-eval — 専用 decision モデルを「言語ゲート」で評価する
+# span01-eval
 
-`respan/span-01-lite`（無料枠）を「出力を1言語に固定する（日本語ナレーションに英語を混ぜない）」
-用途で、正規表現と無料の汎用チャットモデルと比較した記録。
+**Evaluating a prompt-defined "decision model" (span-01-lite) as a language gate — against a plain regex and a generic chat model — with every number recomputed from saved JSON artifacts.**
 
-## 結論
+English | [日本語](README.ja.md)
 
-- **境界ケースでは、汎用モデルが正規表現に大差で勝つ。** 合成23件で
-  正規表現 F1 0.52、判定モデル v4 0.93、無料の汎用チャット 1.00。
-  正規表現はブランド名/URL/人名/略語/コード片を誤検知する（9〜10件）。
-- **実データ（n=52）では正規表現が 22/22。** ただしこの物差しは**循環的**である
-  （クリーン群を「ラテン文字を含まない」と定義して抽出しているため、検出器なら何でも100%）。
-  「正規表現がモデルに勝った」証拠にはならない。
-- **専用モデルの必然性は薄い。** 無料の汎用チャットモデルが同等以上で、
-  指示文の言葉遣い次第で専用モデルの成績は F1 0.67〜0.93 と大きく振れる。
-- したがって実務の形は「**正規表現を第一段、モデルは境界ケースの誤検知を減らす第二段**」。
-  どちらか一方に決める話ではない。
+Can a model that scores "does this text match a behavior described in plain language" replace a regex for keeping generated Japanese narration pure Japanese? This repo measures it honestly: a 23-case boundary suite, a real narration corpus, instruction-wording sweeps, calibration, and a threshold sweep — plus `AUDIT.md`, the record of having five independent models re-review every number before publishing.
 
-数値の意味と限界は `LABELS.md` と `reports/`、外部レビューへの対応は `AUDIT.md` を参照。
+## The task
 
-## 対象（すべて無料枠、`usage.cost=0`）
-| 手法 | 呼び出し | 特徴 |
-|---|---|---|
-| 正規表現 | 直隣接＋空白区切りのパターン | 決定的・0コスト・ゼロレイテンシ |
-| gate | `respan/span-01-lite`（noul） | 自然文で行動を定義 → 確率 |
-| llm | `nvidia/nemotron-3-super-120b-a12b`（chat, temp0） | YES/NO 分類 |
+Detect English words mixed into Japanese narration (the kind a TTS voice reads aloud awkwardly). Three detectors are compared on identical inputs:
 
-有料の `span-01` / `typesafe/jev-*` は手元のキーで 403 のため未測定。
+| method | what it is |
+|---|---|
+| regex | adjacency + whitespace patterns against Latin tokens |
+| gate | `respan/span-01-lite` — a decision model: describe the behavior in prose, get a probability |
+| chat | a generic chat model answering YES/NO at temperature 0 |
 
-## トラック
-- **A** 実データ（日本語ナレーション211件のうち52件）での with/without
-- **B** 較正と閾値スイープ
-- **C** 合成境界23件 × 指示文4種（言い回し感度）
-- **D** 3手法の同一条件比較
+## Measured results
 
-## 主な結果（詳細は `reports/`）
+Boundary suite (23 hand-built edge cases; lenient labels = brands/URLs/proper names/code/acronyms are acceptable):
 
-合成境界23件（lenient = ブランド/固有名詞/URL/略語/コード片は陰性扱い）:
-| 手法 | TP | FP | FN | P | R | F1 |
+| method | TP | FP | FN | P | R | F1 |
 |---|---|---|---|---|---|---|
-| 正規表現（プロジェクトのパターン） | 6 | 9 | 2 | 0.40 | 0.75 | 0.52 |
-| 正規表現（`[A-Za-z]{2,}` のみ） | 8 | 10 | 0 | 0.44 | 1.00 | 0.62 |
-| gate v1（曖昧な指示文） | 5 | 2 | 3 | 0.71 | 0.62 | 0.67 |
-| gate v3（除外を明示） | 7 | 2 | 1 | 0.78 | 0.88 | 0.82 |
-| **gate v4（単一語も数える/除外を明示）** | **7** | **0** | **1** | **1.00** | **0.88** | **0.93** |
-| **無料の汎用チャットモデル** | **8** | **0** | **0** | **1.00** | **1.00** | **1.00** |
+| regex (project patterns) | 6 | 9 | 2 | 0.40 | 0.75 | 0.52 |
+| regex (`[A-Za-z]{2,}`) | 8 | 10 | 0 | 0.44 | 1.00 | 0.62 |
+| gate v1 (vague instruction) | 5 | 2 | 3 | 0.71 | 0.62 | 0.67 |
+| gate v3 (exclusions spelled out) | 7 | 2 | 1 | 0.78 | 0.88 | 0.82 |
+| gate v4 (single words counted, exclusions listed) | 7 | 0 | 1 | 1.00 | 0.88 | 0.93 |
+| generic chat model | 8 | 0 | 0 | 1.00 | 1.00 | 1.00 |
 
-- **指示文の言葉遣いが結果を支配**。v1 は `このmethodはやばい` を 0.06 で見逃す。
-- 「全てのラテン文字を検知せよ」と指示しても守られない（ブランド/URLは除外され続ける）。
-- 無料の汎用チャットモデルはレイテンシの裾が重く（max 3.91s）、稀に空レスポンスを返す（リトライ必須）。
-- 実データでは正規表現 22/22（strict・循環的）、gate 21/22。
-  キャラクター名を許容する lenient では正規表現 F1 0.900 / gate 0.872。
+Real narration corpus (211 items, 22 with Latin tokens, 30-item clean control): regex 22/22, gate 21/22 — **but that ground truth is circular** (the clean set is defined as "contains no Latin"), so it is not evidence that regex beats the model. Details: `reports/trackA.md`.
 
-## 限界
-- 合成23件・各1回。信頼区間なし。0.93 と 1.00 の差は1ケース。
-- 指示文はこの同じ23件で選んでいる（hold-out なし）。
-- 正解ラベルは単一 annotator で、実行後に1件変更した（`LABELS.md`）。
-- 実コーパスは非公開のため、Track A は第三者に再現できない。
+Key findings:
 
-## 使い方（実データは同梱していません）
+- **On boundary cases the models beat the regex decisively** — the regex false-positives on every brand, URL, Latin character name, `OK`, `AI`, `DX`.
+- **Instruction wording dominates the gate's accuracy** (F1 0.67 → 0.93); the same single English word flips from 0.06 to 0.81 depending on phrasing.
+- **Instructions are not fully obeyed**: "detect ALL Latin letters" still excludes brands/URLs.
+- **Threshold sweep** (75 items): 0.15 is the worst operating point (7 FPs), 0.7 the best; the earlier 0.15/0.85 hysteresis recommendation was withdrawn. See `reports/trackB.md`.
+
+## Honest limitations
+
+- n=23, single runs, no confidence intervals; the 0.93-vs-1.00 gap is one case.
+- The gate instruction was tuned on the same 23 cases (no hold-out).
+- Labels come from a single annotator; one label was corrected after the run (recorded in `LABELS.md`).
+- The real corpus is private, so Track A needs your own corpus to reproduce.
+- `AUDIT.md` documents the five-model external review that caught the original numbers' defects, and what was fixed.
+
+## Setup
+
+Python 3.11+ (stdlib only — no dependencies).
+
 ```bash
-export SPAN01_CORPUS_SRC=/path/to/root   # */*/story.json ({"scenes":[{"narration":...}]}) を持つルート
-python corpus/build_corpus.py
-bash scripts/rerun_all.sh                 # 全トラックを実行
-python scripts/run_baselines.py --json    # 正規表現ベースラインと閾値スイープ
+# API key: environment variable, or a repo-root .env (git-ignored)
+export SPAN01_API_KEY=sk-or-v1-...          # or:
+echo 'SPAN01_API_KEY=sk-or-v1-...' > .env
 ```
-`OPENROUTER_API_KEY` は環境変数か `~/.hermes/.env` から読みます（キーは出力しません）。
 
-## データ扱い
-- 実コーパスの原文・グループ名はリポジトリに含めません（`.gitignore`）。
-  公開用には `scripts/sanitize_results.py` で id を匿名化し原文を削除します。
-- 合成ケース（`scripts/run_matrix.py` の `CASES`）は本リポジトリの著作物です。
+The scripts read the key from `SPAN01_API_KEY` or `OPENROUTER_API_KEY` — environment first, then a repo-root `.env` (`scripts/envconfig.py`). The key is never written to outputs.
 
-## ディレクトリ
-`corpus/` 抽出 / `scripts/` 実行 / `results/` 生データ（実データ系は除外） /
-`reports/` トラック別まとめ / `candidates/` 指示文 / `LABELS.md` 正解基準 / `AUDIT.md` レビュー対応
+## Reproduce
+
+The real narration corpus is private (third-party content), so Track A needs your own corpus. Point `SPAN01_CORPUS_SRC` at a tree containing `*/*/story.json` files (`{"scenes": [{"narration": ...}]}`):
+
+```bash
+export SPAN01_CORPUS_SRC=/path/to/corpus-root   # for Track A
+export SPAN01_EXEMPT=CharName                  # lenient-label exempt tokens, comma-separated
+
+python corpus/build_corpus.py                  # -> corpus/items.jsonl
+bash scripts/rerun_all.sh                      # all tracks, end to end
+python scripts/run_baselines.py --json         # regex baselines + threshold sweep (offline)
+```
+
+Individual tracks (one report each in `reports/`):
+
+```bash
+cd scripts
+python run_matrix.py                                                       # Track C: 23 cases x 3 instructions
+python tune_instruction.py --instructions @../candidates/v4_production.txt \
+    --out ../results/tune_v4.json                                            # v4 on the same cases
+python run_gate.py --sample-neg 30 \
+    --instructions "$(cat ../candidates/v4_production.txt)" \
+    --out ../results/trackA_v4.json                                          # Track A: real corpus
+python run_llm_baseline.py --out ../results/trackD_llm.json                  # Track D: chat baseline
+python analyze.py --results ../results/trackA_v4.json                       # Track A tables
+python calibrate.py --synth ../results/tune_v4.json \
+    --real ../results/trackA_v4.json                                         # Track B: calibration
+```
+
+`analyze.py` / `calibrate.py` pick up `SPAN01_EXEMPT` from the environment; pass `--exempt` explicitly to override.
+
+Every report number traces to a JSON in `results/`. `results/public/trackA_anon.json` is the anonymized real-data subset (ids anonymized, narration stripped via `scripts/sanitize_results.py`).
+
+## Data handling
+
+- The real corpus's original text and group names are not committed (`.gitignore`); the anonymized subset ships in `results/public/`.
+- The synthetic cases (`CASES` in `scripts/run_matrix.py`) are original to this repo.
+
+## Repository layout
+
+| path | contents |
+|---|---|
+| `corpus/` | `build_corpus.py` — extract narration items from `story.json` trees |
+| `scripts/` | runners (`run_gate`, `run_matrix`, `tune_instruction`, `run_llm_baseline`, `run_baselines`) + analysis (`analyze`, `calibrate`, `sanitize_results`, `envconfig`) |
+| `results/` | raw JSON artifacts per track (real-corpus files git-ignored) |
+| `reports/` | one markdown report per track + `summary.md` |
+| `candidates/` | instruction texts (v4 = production) |
+| `LABELS.md` | ground-truth definitions, exemption-list versioning, the post-run label change |
+| `AUDIT.md` | the five-model external review: findings → verification → fixes |
+
+## License
+
+[MIT](LICENSE)
