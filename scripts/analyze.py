@@ -2,13 +2,18 @@
 
 2つの正解基準を併記する:
 - strict : ラテン語トークンが1つでもあれば陽性（固有名詞の例外なし）
-- lenient: 固有名詞/キャラ名（LEGIT）を除外して陽性判定
+- lenient: 固有名詞/キャラ名（--exempt）を除外して陽性判定
 
 比較対象（without 側）:
-- none   : 何もしない（歴史的な実態。全件 未検知 = 再現率0）
+- none   : 何もしない（全件 未検知 = 再現率0）
 - latin  : 厳格な「ラテン語検出」regex（参考の素朴ベースライン）
-- proj   : language_gate.regex_mixed_language_hit（直隣接＋空白区切り）
-- gate   : span-01-lite:free の noul
+- proj   : 直隣接＋空白区切りのパターン
+- gate   : 判定モデル (span-01-lite)
+
+入力は run_gate.py の生結果（narration を含む）のほか、匿名化済みの
+results/public/*.json（narration 削除・latin_tokens→latin_token_count 置換済み）も
+受け付ける。匿名化ファイルは latin/proj の regex 再計算ができないため、
+それらの行は省略され、none/gate の行だけが出る。
 """
 import argparse
 import json
@@ -22,9 +27,6 @@ PROJ_PATTERNS = (
     rf"[A-Za-z]{{2,}}\s+[{JP}]", rf"[{JP}]\s+[A-Za-z]{{2,}}",
 )
 
-# 固有名詞・キャラ名として扱うトークン（lenient 基準のみで除外）。実行時に --exempt で指定。
-DEFAULT_EXEMPT: set = set()
-
 
 def proj_regex(text):
     return any(re.search(p, text) for p in PROJ_PATTERNS)
@@ -37,11 +39,22 @@ def prf(tp, fp, fn):
     return p, r, f
 
 
+def has_latin(rec):
+    """生結果なら latin_tokens から、匿名化済みなら has_latin / latin_token_count から。"""
+    if "latin_tokens" in rec:
+        return bool(rec["latin_tokens"])
+    if "has_latin" in rec:
+        return bool(rec["has_latin"])
+    return bool(rec.get("latin_token_count", 0))
+
+
 def true_label(rec, standard, exempt=frozenset()):
-    toks = rec["latin_tokens"]
     if standard == "strict":
-        return bool(toks)
-    return bool([t for t in toks if t not in exempt])
+        return has_latin(rec)
+    if "latin_tokens" in rec:
+        return bool([t for t in rec["latin_tokens"] if t not in exempt])
+    # 匿名化済み: トークン列が無いので strict と同じ扱い（免除は適用不能）
+    return has_latin(rec)
 
 
 def main():
@@ -54,26 +67,31 @@ def main():
     exempt = frozenset(t.strip() for t in args.exempt.split(",") if t.strip())
     data = json.load(open(args.results))
     res = [r for r in data["results"] if r.get("ok") and isinstance(r.get("probability"), (int, float))]
+    anonymized = "latin_tokens" not in res[0] if res else False
 
-    print(f"model={data['meta']['model']} n={len(res)} threshold={args.threshold}")
-    print(f"instructions={data['meta']['instructions'][:80]}...\n")
+    print(f"model={data['meta']['model']} n={len(res)} threshold={args.threshold}"
+          + ("  [anonymized input: regex rows unavailable]" if anonymized else ""))
+    if "instructions" in data["meta"]:
+        print(f"instructions={data['meta']['instructions'][:80]}...\n")
 
     for standard in ("strict", "lenient"):
+        if anonymized and standard == "lenient" and exempt:
+            print("=== label standard: lenient === (exemption list cannot apply to anonymized data; skipped)\n")
+            continue
         print(f"=== label standard: {standard} ===")
         rows = {
             "none":  [0, 0, 0, 0],
-            "latin": [0, 0, 0, 0],
-            "proj":  [0, 0, 0, 0],
             "gate":  [0, 0, 0, 0],
         }
+        if not anonymized:
+            rows["latin"] = [0, 0, 0, 0]
+            rows["proj"] = [0, 0, 0, 0]
         for r in res:
             y = true_label(r, standard, exempt)
-            preds = {
-                "none": False,
-                "latin": bool(LATIN.search(r["narration"])),
-                "proj": proj_regex(r["narration"]),
-                "gate": r["probability"] >= args.threshold,
-            }
+            preds = {"none": False, "gate": r["probability"] >= args.threshold}
+            if not anonymized:
+                preds["latin"] = bool(LATIN.search(r["narration"]))
+                preds["proj"] = proj_regex(r["narration"])
             for name, pred in preds.items():
                 if y and pred: rows[name][0] += 1
                 elif y and not pred: rows[name][2] += 1
@@ -93,13 +111,14 @@ def main():
 
     print("\n=== gate-unflagged items that contain latin (recall misses) ===")
     for r in res:
-        if r["latin_tokens"] and r["probability"] < args.threshold:
-            print(f"  {r['id']} {r['latin_tokens']} prob={r['probability']:.3f}")
+        if has_latin(r) and r["probability"] < args.threshold:
+            toks = r.get("latin_tokens") or f"count={r.get('latin_token_count')}"
+            print(f"  {r.get('id') or r.get('item')} {toks} prob={r['probability']:.3f}")
 
     print("\n=== gate-flagged items without latin (precision misses) ===")
     for r in res:
-        if not r["latin_tokens"] and r["probability"] >= args.threshold:
-            print(f"  {r['id']} prob={r['probability']:.3f}")
+        if not has_latin(r) and r["probability"] >= args.threshold:
+            print(f"  {r.get('id') or r.get('item')} prob={r['probability']:.3f}")
 
 
 if __name__ == "__main__":
