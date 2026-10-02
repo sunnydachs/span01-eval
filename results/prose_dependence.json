@@ -1,0 +1,769 @@
+{
+ "meta": {
+  "vague": "The text contains English words or phrases (A-Z/a-z) mixed into Japanese narration. Established brand names (iPhone, YouTube), proper nouns, and katakana loanwords do NOT count.",
+  "v4_full": "The Japanese narration is meant to be read aloud as Japanese. Return yes if it contains English vocabulary that a Japanese speaker would have to pronounce as an English word (for example: method, clock, missing piece, bubble wand, Let's go, welcome back). Count even a single English word that sits directly next to Japanese text. Do NOT count: katakana loanwords, established brand names (iPhone, YouTube, Instagram), URLs, version or file names, code fragments, short acronyms such as AI, DX, OK, and character or proper names written in Latin (for example the character name Kuro).",
+  "threshold": 0.5,
+  "cases": 23
+ },
+ "results": [
+  {
+   "id": "pos_adjacent",
+   "category": "english_word",
+   "text": "このmethodはやばい。今日は最強の裏技を紹介するよ。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9859363742093709,
+      "elapsed": 0.42
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9971990732559372,
+      "elapsed": 0.36
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.05929128,
+      "elapsed": 1.03
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.812687,
+      "elapsed": 0.86
+     }
+    }
+   }
+  },
+  {
+   "id": "pos_spaced",
+   "category": "english_word",
+   "text": "この method は本当にやばい。早速やってみよう。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.02931223128133519,
+      "elapsed": 0.39
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9947798752640177,
+      "elapsed": 0.43
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.04035877,
+      "elapsed": 0.55
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.69485223,
+      "elapsed": 0.95
+     }
+    }
+   }
+  },
+  {
+   "id": "pos_sentence",
+   "category": "english_sentence",
+   "text": "次のステップに行こう。 This is amazing, right? みんなも絶対試してほしい。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.08509904848750824,
+      "elapsed": 0.28
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9465966658688456,
+      "elapsed": 0.39
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.925648,
+      "elapsed": 0.83
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9188154,
+      "elapsed": 1.06
+     }
+    }
+   }
+  },
+  {
+   "id": "pos_phrase",
+   "category": "english_phrase",
+   "text": "彼は cloak をまとっていた。星屑が淡く輝いていた。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9989677690012989,
+      "elapsed": 0.3
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9986749774516915,
+      "elapsed": 0.3
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.8233667,
+      "elapsed": 0.96
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9187943,
+      "elapsed": 0.85
+     }
+    }
+   }
+  },
+  {
+   "id": "pos_noun",
+   "category": "english_word",
+   "text": "隠された compartments を開けると、光る音符があった。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9982992777486639,
+      "elapsed": 0.35
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9149009578933863,
+      "elapsed": 0.28
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.43994254,
+      "elapsed": 0.84
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.23056294,
+      "elapsed": 0.78
+     }
+    }
+   }
+  },
+  {
+   "id": "pos_long_eng",
+   "category": "english_sentence",
+   "text": "Hello everyone, welcome back to my channel. 今日もよろしく。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9465966760380549,
+      "elapsed": 0.34
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.0035936033150709124,
+      "elapsed": 0.47
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.5993878,
+      "elapsed": 0.52
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.8927287,
+      "elapsed": 0.85
+     }
+    }
+   }
+  },
+  {
+   "id": "pos_greeting",
+   "category": "english_phrase",
+   "text": "それでは Let's go 早速やってみよう。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.966914019704466,
+      "elapsed": 0.3
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9994806950933597,
+      "elapsed": 0.31
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.95850897,
+      "elapsed": 0.81
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9548947,
+      "elapsed": 0.5
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_katakana",
+   "category": "katakana",
+   "text": "スマートフォンを使って、まずはスタートしよう。アプリをひらいてボタンをおすだけ。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.01590638806722895,
+      "elapsed": 0.32
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.0024726236430490894,
+      "elapsed": 0.36
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.04763059,
+      "elapsed": 1.08
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.046709463,
+      "elapsed": 1.09
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_katakana2",
+   "category": "katakana",
+   "text": "バブルワンドで夢の窓を開けた。アプリの設定はこれで完了だ。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.02297736857193652,
+      "elapsed": 0.29
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.009708474251942774,
+      "elapsed": 0.3
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.039608784,
+      "elapsed": 0.5
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.03653437,
+      "elapsed": 0.49
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_katakana3",
+   "category": "katakana",
+   "text": "メソッドを使ってみましょう。まずはスタート地点を決めよう。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.01798621358102086,
+      "elapsed": 0.33
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.9149009509324104,
+      "elapsed": 0.43
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.027510164,
+      "elapsed": 1.49
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.08909992,
+      "elapsed": 1.04
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_brand_iphone",
+   "category": "brand",
+   "text": "このiPhoneの設定方法を紹介します。画面をタップしてください。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.37754067580180184,
+      "elapsed": 0.27
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.00026119041983674286,
+      "elapsed": 0.56
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.03651822,
+      "elapsed": 0.51
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.030017145,
+      "elapsed": 0.51
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_brand_youtube",
+   "category": "brand",
+   "text": "YouTubeのチャンネル登録もお願いします。高評価もよろしく。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.002800927268216847,
+      "elapsed": 0.32
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.0001313518277662925,
+      "elapsed": 0.72
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.041415665,
+      "elapsed": 0.83
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.031713236,
+      "elapsed": 0.87
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_brand_multi",
+   "category": "brand",
+   "text": "InstagramとTikTokにも同じ動画を投稿しました。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.7310585903489892,
+      "elapsed": 0.27
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.0005527786227740069,
+      "elapsed": 0.38
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.033879012,
+      "elapsed": 0.5
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.036121566,
+      "elapsed": 0.85
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_char_latin_name",
+   "category": "proper_noun",
+   "text": "ぼくはKuro。静かな草原で、遠くの子守歌が聞こえる。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.022977370788146625,
+      "elapsed": 0.4
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.0009110509796122678,
+      "elapsed": 0.48
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.27500713,
+      "elapsed": 0.51
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.047845628,
+      "elapsed": 1.15
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_char_latin_name_sp",
+   "category": "proper_noun",
+   "text": "霞と月光でできた守護者が現れ、静かに Kuro を見つめた。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9706877698846185,
+      "elapsed": 0.33
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.00011591936682646069,
+      "elapsed": 0.31
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.3782334,
+      "elapsed": 0.51
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.36186275,
+      "elapsed": 0.53
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_url",
+   "category": "url",
+   "text": "詳細は https://example.com を確認してください。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.18242552825126704,
+      "elapsed": 0.33
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.004070138299161915,
+      "elapsed": 0.31
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.07215845,
+      "elapsed": 0.55
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.03687745,
+      "elapsed": 0.49
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_version",
+   "category": "alnum",
+   "text": "バージョン v2.1 に更新しました。動作も軽くなっています。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.09534946104307897,
+      "elapsed": 0.31
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.003593603335079574,
+      "elapsed": 0.39
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.046601743,
+      "elapsed": 0.73
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.02456128,
+      "elapsed": 0.49
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_number_unit",
+   "category": "alnum",
+   "text": "5GBのデータを使いました。残りは3GBです。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9669140181551665,
+      "elapsed": 0.38
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.004609571645223022,
+      "elapsed": 0.31
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.04112233,
+      "elapsed": 0.48
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.02483906,
+      "elapsed": 1.45
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_acronym",
+   "category": "acronym",
+   "text": "AIとDXの時代です。仕事のやり方が変わります。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.8175744695262777,
+      "elapsed": 0.32
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.00012339458501712343,
+      "elapsed": 0.3
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.056830365,
+      "elapsed": 0.81
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.037735898,
+      "elapsed": 0.52
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_code",
+   "category": "code",
+   "text": "設定は `npm install` を実行してください。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.24508501864634827,
+      "elapsed": 0.27
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.015906391361934443,
+      "elapsed": 0.33
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.5679731,
+      "elapsed": 0.9
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.15320772,
+      "elapsed": 0.74
+     }
+    }
+   }
+  },
+  {
+   "id": "neg_ok",
+   "category": "acronym",
+   "text": "はい、OKです。このまま進めましょう。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.014063629845490687,
+      "elapsed": 0.31
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.00037998454300794117,
+      "elapsed": 0.45
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.72677976,
+      "elapsed": 0.45
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.23903424,
+      "elapsed": 0.49
+     }
+    }
+   }
+  },
+  {
+   "id": "org_english_role_noun",
+   "category": "organic",
+   "text": "猫 keeper が真珠を老女に渡した。時が、再び前進した。",
+   "strict_positive": true,
+   "lenient_positive": true,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.9706877694606352,
+      "elapsed": 0.33
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.004070137961283018,
+      "elapsed": 0.29
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.6195096,
+      "elapsed": 0.52
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.81587315,
+      "elapsed": 0.53
+     }
+    }
+   }
+  },
+  {
+   "id": "neu_pure_ja",
+   "category": "control_negative",
+   "text": "この裏技は本当にやばい。今日の動画では最強の方法を紹介します。",
+   "strict_positive": false,
+   "lenient_positive": false,
+   "by_model": {
+    "inception/mercury-decide:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.0035936020828710932,
+      "elapsed": 0.28
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.0009697521983141484,
+      "elapsed": 0.35
+     }
+    },
+    "respan/span-01-lite:free": {
+     "vague": {
+      "ok": true,
+      "probability": 0.024394251,
+      "elapsed": 0.45
+     },
+     "v4_full": {
+      "ok": true,
+      "probability": 0.04450184,
+      "elapsed": 0.54
+     }
+    }
+   }
+  }
+ ]
+}
