@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # No Python manifest in this repo (the scripts are stdlib-only and run from a
+  # checkout), so there is no pip ecosystem to update.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    groups:
+      github-actions-minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
