@@ -1,7 +1,7 @@
 {
  "meta": {
   "model": "nvidia/nemotron-3-super-120b-a12b:free",
-  "observed_at": "2026-09-27T18:42:39+0900",
+  "observed_at": "2026-10-03T12:44:34+0900",
   "system": "You decide whether a Japanese narration text contains English words or phrases that a Japanese speaker would have to read aloud as English. Count even a single English word next to Japanese text. Do NOT count katakana loanwords, brand names (iPhone, YouTube), URLs, version/file names, code fragments, short acronyms (AI, OK), or character/proper names in Latin (e.g. Kuro). Answer with exactly one word: YES or NO."
  },
  "results": [
@@ -16,7 +16,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.79
+   "elapsed": 0.57
   },
   {
    "id": "pos_spaced",
@@ -29,7 +29,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.69
+   "elapsed": 0.55
   },
   {
    "id": "pos_sentence",
@@ -42,7 +42,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 1.51
+   "elapsed": 0.67
   },
   {
    "id": "pos_phrase",
@@ -55,7 +55,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 1.0
+   "elapsed": 0.94
   },
   {
    "id": "pos_noun",
@@ -68,7 +68,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 1.46
+   "elapsed": 0.54
   },
   {
    "id": "pos_long_eng",
@@ -81,7 +81,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 1.48
+   "elapsed": 0.66
   },
   {
    "id": "pos_greeting",
@@ -94,7 +94,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.49
+   "elapsed": 0.38
   },
   {
    "id": "neg_katakana",
@@ -102,9 +102,12 @@
    "text": "スマートフォンを使って、まずはスタートしよう。アプリをひらいてボタンをおすだけ。",
    "strict_positive": false,
    "lenient_positive": false,
-   "ok": false,
-   "error": "'choices'",
-   "elapsed": 0.15
+   "ok": true,
+   "answer": "NO",
+   "raw": "NO",
+   "flagged": false,
+   "cost": 0,
+   "elapsed": 1.96
   },
   {
    "id": "neg_katakana2",
@@ -117,7 +120,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.97
+   "elapsed": 1.84
   },
   {
    "id": "neg_katakana3",
@@ -130,7 +133,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 1.88
+   "elapsed": 0.74
   },
   {
    "id": "neg_brand_iphone",
@@ -143,7 +146,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 2.48
+   "elapsed": 0.64
   },
   {
    "id": "neg_brand_youtube",
@@ -156,7 +159,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 1.2
+   "elapsed": 0.99
   },
   {
    "id": "neg_brand_multi",
@@ -169,7 +172,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.95
+   "elapsed": 1.1
   },
   {
    "id": "neg_char_latin_name",
@@ -182,7 +185,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 1.13
+   "elapsed": 1.23
   },
   {
    "id": "neg_char_latin_name_sp",
@@ -195,7 +198,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.73
+   "elapsed": 1.68
   },
   {
    "id": "neg_url",
@@ -208,7 +211,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.67
+   "elapsed": 6.23
   },
   {
    "id": "neg_version",
@@ -221,7 +224,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 1.29
+   "elapsed": 0.59
   },
   {
    "id": "neg_number_unit",
@@ -234,7 +237,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 2.88
+   "elapsed": 8.17
   },
   {
    "id": "neg_acronym",
@@ -247,7 +250,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.88
+   "elapsed": 2.77
   },
   {
    "id": "neg_code",
@@ -260,7 +263,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 3.91
+   "elapsed": 1.02
   },
   {
    "id": "neg_ok",
@@ -273,7 +276,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 3.74
+   "elapsed": 0.81
   },
   {
    "id": "org_english_role_noun",
@@ -286,7 +289,7 @@
    "raw": "YES",
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.82
+   "elapsed": 3.73
   },
   {
    "id": "neu_pure_ja",
@@ -299,7 +302,7 @@
    "raw": "NO",
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.54
+   "elapsed": 0.63
   }
  ],
  "determinism": [
