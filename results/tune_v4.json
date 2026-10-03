@@ -3,7 +3,7 @@
   "model": "respan/span-01-lite:free",
   "instructions": "The Japanese narration is meant to be read aloud as Japanese. Return yes if it contains English vocabulary that a Japanese speaker would have to pronounce as an English word (for example: method, clock, missing piece, bubble wand, Let's go, welcome back). Count even a single English word that sits directly next to Japanese text. Do NOT count: katakana loanwords, established brand names (iPhone, YouTube, Instagram), URLs, version or file names, code fragments, short acronyms such as AI, DX, OK, and character or proper names written in Latin (for example the character name Kuro).",
   "threshold": 0.5,
-  "observed_at": "2026-09-27T18:38:13+0900"
+  "observed_at": "2026-10-03T12:40:04+0900"
  },
  "results": [
   {
@@ -12,10 +12,10 @@
    "text": "このmethodはやばい。今日は最強の裏技を紹介するよ。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.8112633,
+   "probability": 0.812687,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.342,
+   "elapsed": 0.354,
    "ok": true
   },
   {
@@ -24,10 +24,10 @@
    "text": "この method は本当にやばい。早速やってみよう。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.70638555,
+   "probability": 0.69485223,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.373,
+   "elapsed": 0.344,
    "ok": true
   },
   {
@@ -36,10 +36,10 @@
    "text": "次のステップに行こう。 This is amazing, right? みんなも絶対試してほしい。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.91973424,
+   "probability": 0.9185792,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.433,
+   "elapsed": 1.235,
    "ok": true
   },
   {
@@ -48,10 +48,10 @@
    "text": "彼は cloak をまとっていた。星屑が淡く輝いていた。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.9205173,
+   "probability": 0.91995883,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.426,
+   "elapsed": 0.401,
    "ok": true
   },
   {
@@ -60,10 +60,10 @@
    "text": "隠された compartments を開けると、光る音符があった。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.2216708,
+   "probability": 0.2432476,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.495,
+   "elapsed": 0.437,
    "ok": true
   },
   {
@@ -72,10 +72,10 @@
    "text": "Hello everyone, welcome back to my channel. 今日もよろしく。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.8946984,
+   "probability": 0.8927287,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.354,
+   "elapsed": 0.372,
    "ok": true
   },
   {
@@ -84,10 +84,10 @@
    "text": "それでは Let's go 早速やってみよう。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.95513797,
+   "probability": 0.9548947,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.374,
+   "elapsed": 0.349,
    "ok": true
   },
   {
@@ -96,10 +96,10 @@
    "text": "スマートフォンを使って、まずはスタートしよう。アプリをひらいてボタンをおすだけ。",
    "strict_positive": false,
    "lenient_positive": false,
-   "probability": 0.045470364,
+   "probability": 0.045242462,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.345,
+   "elapsed": 0.377,
    "ok": true
   },
   {
@@ -108,10 +108,10 @@
    "text": "バブルワンドで夢の窓を開けた。アプリの設定はこれで完了だ。",
    "strict_positive": false,
    "lenient_positive": false,
-   "probability": 0.03682138,
+   "probability": 0.037691046,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.323,
+   "elapsed": 0.447,
    "ok": true
   },
   {
@@ -120,10 +120,10 @@
    "text": "メソッドを使ってみましょう。まずはスタート地点を決めよう。",
    "strict_positive": false,
    "lenient_positive": false,
-   "probability": 0.09010861,
+   "probability": 0.0888168,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.39,
+   "elapsed": 0.469,
    "ok": true
   },
   {
@@ -132,10 +132,10 @@
    "text": "このiPhoneの設定方法を紹介します。画面をタップしてください。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.030265031,
+   "probability": 0.029945537,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.408,
+   "elapsed": 0.365,
    "ok": true
   },
   {
@@ -144,10 +144,10 @@
    "text": "YouTubeのチャンネル登録もお願いします。高評価もよろしく。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.032348912,
+   "probability": 0.031713236,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.393,
+   "elapsed": 0.351,
    "ok": true
   },
   {
@@ -156,10 +156,10 @@
    "text": "InstagramとTikTokにも同じ動画を投稿しました。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.03674931,
+   "probability": 0.03723074,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.338,
+   "elapsed": 0.376,
    "ok": true
   },
   {
@@ -168,10 +168,10 @@
    "text": "ぼくはKuro。静かな草原で、遠くの子守歌が聞こえる。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.050013904,
+   "probability": 0.050963923,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.4,
+   "elapsed": 0.431,
    "ok": true
   },
   {
@@ -180,10 +180,10 @@
    "text": "霞と月光でできた守護者が現れ、静かに Kuro を見つめた。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.33089054,
+   "probability": 0.36186275,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.395,
+   "elapsed": 0.449,
    "ok": true
   },
   {
@@ -192,10 +192,10 @@
    "text": "詳細は https://example.com を確認してください。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.037416514,
+   "probability": 0.0374324,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.389,
+   "elapsed": 0.429,
    "ok": true
   },
   {
@@ -204,10 +204,10 @@
    "text": "バージョン v2.1 に更新しました。動作も軽くなっています。",
    "strict_positive": false,
    "lenient_positive": false,
-   "probability": 0.024271008,
+   "probability": 0.02456128,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.349,
+   "elapsed": 0.399,
    "ok": true
   },
   {
@@ -216,10 +216,10 @@
    "text": "5GBのデータを使いました。残りは3GBです。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.024725102,
+   "probability": 0.024607293,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.43,
+   "elapsed": 0.356,
    "ok": true
   },
   {
@@ -228,10 +228,10 @@
    "text": "AIとDXの時代です。仕事のやり方が変わります。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.038575195,
+   "probability": 0.03807262,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.33,
+   "elapsed": 0.576,
    "ok": true
   },
   {
@@ -240,10 +240,10 @@
    "text": "設定は `npm install` を実行してください。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.15149873,
+   "probability": 0.14758961,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.374,
+   "elapsed": 0.523,
    "ok": true
   },
   {
@@ -252,10 +252,10 @@
    "text": "はい、OKです。このまま進めましょう。",
    "strict_positive": true,
    "lenient_positive": false,
-   "probability": 0.24323294,
+   "probability": 0.2374012,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.388,
+   "elapsed": 0.403,
    "ok": true
   },
   {
@@ -264,10 +264,10 @@
    "text": "猫 keeper が真珠を老女に渡した。時が、再び前進した。",
    "strict_positive": true,
    "lenient_positive": true,
-   "probability": 0.8181415,
+   "probability": 0.81587315,
    "flagged": true,
    "cost": 0,
-   "elapsed": 0.349,
+   "elapsed": 0.442,
    "ok": true
   },
   {
@@ -276,10 +276,10 @@
    "text": "この裏技は本当にやばい。今日の動画では最強の方法を紹介します。",
    "strict_positive": false,
    "lenient_positive": false,
-   "probability": 0.042942405,
+   "probability": 0.04492321,
    "flagged": false,
    "cost": 0,
-   "elapsed": 0.446,
+   "elapsed": 0.398,
    "ok": true
   }
  ]
