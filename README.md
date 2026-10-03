@@ -1,6 +1,6 @@
 # span01-eval
 
-**Evaluating a prompt-defined "decision model" (span-01-lite) as a language gate — against a plain regex and a generic chat model — with every number recomputed from saved JSON artifacts.**
+**Evaluating prompt-defined "decision models" (span-01-lite, mercury-decide) as a language gate — against a plain regex and a generic chat model — with every number recomputed from saved JSON artifacts.**
 
 English | [日本語](README.ja.md)
 
@@ -29,7 +29,7 @@ Boundary suite (23 hand-built edge cases; lenient labels = brands/URLs/proper na
 | gate v4 (single words counted, exclusions listed) | 7 | 0 | 1 | 1.00 | 0.88 | 0.93 |
 | generic chat model | 8 | 0 | 0 | 1.00 | 1.00 | 1.00 |
 
-Real narration corpus (211 items, 22 with Latin tokens, 30-item clean control): regex 22/22, gate 21/22 — **but that ground truth is circular** (the clean set is defined as "contains no Latin"), so it is not evidence that regex beats the model. Details: `reports/trackA.md`.
+Real narration corpus (211 items at the 2026-09-27 measurement — the corpus has since grown to 245, which moves only the Track A counts; 22 with Latin tokens, 30-item clean control): regex 22/22, gate 21/22 — **but that ground truth is circular** (the clean set is defined as "contains no Latin"), so it is not evidence that regex beats the model. Details: `reports/trackA.md`.
 
 Key findings:
 
@@ -104,6 +104,29 @@ python calibrate.py --synth ../results/tune_v4.json \
 - **One full pipeline run costs 167 calls** (Track C 69 + tune v4 23 + Track A 52 + Track D 23; measured in `results/rerun.log`, 2026-09-27 run. Track A grows/shrinks with corpus size).
 - Every report number traces to a JSON in `results/`.
 
+## Second decision model (mercury-decide) — added 2026-10-03
+
+The scope grew: the same 23-case boundary suite and the same instruction wordings, now applied to a
+second "decision" model (`inception/mercury-decide`) side by side with `span-01-lite`.
+
+- `docs/mercury-decide-spike-2026-10-01.md` — write-up: the three answer types, the schema, both models' numbers
+- `results/spike_mercury_vs_span.json` — 23 cases × 2 models, one instruction (2026-10-01)
+- `results/prose_dependence.json` — 23 cases × 2 models × 2 instruction wordings (2026-10-02)
+- `scripts/run_mercury_prose.py` — reproduces the instruction-wording run (92 calls)
+
+On the suite both models score **F1 0.93**, but they miss *different* cases (mercury: a standalone
+English greeting, p=0.002; span-01: one embedded word, p=0.24) — an OR of the two recovers all 23 on
+2026-10-01 (on the 2026-10-02 re-run the same OR scored F1 0.94, one false positive — the margin is
+real but thin). Measured
+on the same day, both repeat bit-identically; re-running the **same instruction on a later day**
+flipped 2 of 23 mercury verdicts (0.93 → 0.80), while span-01 changed 0 of 23 across four days
+(9/27, 10/1, 10/2, 10/3).
+
+## Contributing
+
+Issues and corrections are welcome — the measured claims are only worth as much as their weakest
+number. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Data handling
 
 - The real corpus's original text and group names are never committed (`.gitignore`); the anonymized subset ships in `results/public/`.
@@ -120,6 +143,7 @@ python calibrate.py --synth ../results/tune_v4.json \
 | `candidates/` | instruction texts (v4 = production) |
 | `LABELS.md` | ground-truth definitions, exemption-list versioning, the post-run label change |
 | `AUDIT.md` | the five-model external review: findings → verification → fixes |
+| `docs/` | measurement write-ups (`mercury-decide-spike-2026-10-01.md`) and the note/article drafts |
 
 ## License
 
