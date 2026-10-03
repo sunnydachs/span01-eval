@@ -1,7 +1,7 @@
 {
  "meta": {
   "model": "respan/span-01-lite:free",
-  "observed_at": "2026-09-27T18:33:59+0900",
+  "observed_at": "2026-10-03T12:35:47+0900",
   "variants": {
    "v1_current": "The text contains English words or phrases (A-Z/a-z) mixed into Japanese narration. Established brand names (iPhone, YouTube), proper nouns, and katakana loanwords do NOT count.",
    "v2_any_latin": "The text contains any Latin alphabet characters (A-Z/a-z). Japanese katakana does NOT count.",
@@ -19,27 +19,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.05971282,
+     "probability": 0.05718271,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.968
+     "elapsed": 0.959
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.20519154,
+     "probability": 0.19832923,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.827
+     "elapsed": 0.86
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.88571113,
+     "probability": 0.8813032,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.715
+     "elapsed": 0.667
     }
    }
   },
@@ -52,27 +52,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.04026646,
+     "probability": 0.04035877,
      "cost": 0,
      "input_tokens": 84,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.737
+     "elapsed": 0.785
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.43751124,
+     "probability": 0.4250723,
      "cost": 0,
      "input_tokens": 48,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.853
+     "elapsed": 0.759
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.7685826,
+     "probability": 0.77955216,
      "cost": 0,
      "input_tokens": 134,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.334
+     "elapsed": 0.743
     }
    }
   },
@@ -85,27 +85,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.9266423,
+     "probability": 0.925648,
      "cost": 0,
      "input_tokens": 91,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.827
+     "elapsed": 0.745
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.87214774,
+     "probability": 0.8739614,
      "cost": 0,
      "input_tokens": 55,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.753
+     "elapsed": 0.491
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.91968423,
+     "probability": 0.92142814,
      "cost": 0,
      "input_tokens": 141,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.734
+     "elapsed": 0.422
     }
    }
   },
@@ -118,27 +118,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.8072066,
+     "probability": 0.81285053,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.385
+     "elapsed": 0.703
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.86066884,
+     "probability": 0.86345345,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.338
+     "elapsed": 0.334
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.9470346,
+     "probability": 0.94765437,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.334
+     "elapsed": 0.757
     }
    }
   },
@@ -151,27 +151,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.43329772,
+     "probability": 0.45312148,
      "cost": 0,
      "input_tokens": 86,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.659
+     "elapsed": 0.436
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.61137223,
+     "probability": 0.62153107,
      "cost": 0,
      "input_tokens": 50,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.708
+     "elapsed": 0.779
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.46474594,
+     "probability": 0.49763438,
      "cost": 0,
      "input_tokens": 136,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.708
+     "elapsed": 0.374
     }
    }
   },
@@ -184,27 +184,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.6114186,
+     "probability": 0.5993878,
      "cost": 0,
      "input_tokens": 91,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.742
+     "elapsed": 0.549
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.9093907,
+     "probability": 0.9094025,
      "cost": 0,
      "input_tokens": 55,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.401
+     "elapsed": 0.464
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.6582747,
+     "probability": 0.65347415,
      "cost": 0,
      "input_tokens": 141,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.419
+     "elapsed": 0.726
     }
    }
   },
@@ -217,27 +217,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.95841324,
+     "probability": 0.95850897,
      "cost": 0,
      "input_tokens": 83,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.472
+     "elapsed": 0.854
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.9485226,
+     "probability": 0.94790345,
      "cost": 0,
      "input_tokens": 47,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.623
+     "elapsed": 0.686
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.9669554,
+     "probability": 0.9662663,
      "cost": 0,
      "input_tokens": 133,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.687
+     "elapsed": 0.361
     }
    }
   },
@@ -250,27 +250,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.04720227,
+     "probability": 0.04659841,
      "cost": 0,
      "input_tokens": 88,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.384
+     "elapsed": 0.409
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.025625445,
+     "probability": 0.025670713,
      "cost": 0,
      "input_tokens": 52,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.36
+     "elapsed": 0.753
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.03273134,
+     "probability": 0.034856774,
      "cost": 0,
      "input_tokens": 138,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.374
+     "elapsed": 0.414
     }
    }
   },
@@ -283,27 +283,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.03919654,
+     "probability": 0.039608784,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.378
+     "elapsed": 0.364
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.021377113,
+     "probability": 0.021330062,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.682
+     "elapsed": 0.356
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.025657646,
+     "probability": 0.02616198,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.727
+     "elapsed": 0.732
     }
    }
   },
@@ -316,27 +316,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.027624166,
+     "probability": 0.027155729,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.336
+     "elapsed": 0.751
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.02035423,
+     "probability": 0.020785721,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.367
+     "elapsed": 0.429
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.029978061,
+     "probability": 0.029030252,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.392
+     "elapsed": 0.366
     }
    }
   },
@@ -349,27 +349,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.03696143,
+     "probability": 0.03737679,
      "cost": 0,
      "input_tokens": 86,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.376
+     "elapsed": 0.396
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.21089402,
+     "probability": 0.21171223,
      "cost": 0,
      "input_tokens": 50,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.657
+     "elapsed": 0.462
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.028461186,
+     "probability": 0.029358502,
      "cost": 0,
      "input_tokens": 136,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.745
+     "elapsed": 0.342
     }
    }
   },
@@ -382,27 +382,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.04141353,
+     "probability": 0.041415665,
      "cost": 0,
      "input_tokens": 86,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.364
+     "elapsed": 0.556
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.37196082,
+     "probability": 0.38933036,
      "cost": 0,
      "input_tokens": 50,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.318
+     "elapsed": 0.436
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.030050533,
+     "probability": 0.030218242,
      "cost": 0,
      "input_tokens": 136,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.343
+     "elapsed": 0.692
     }
    }
   },
@@ -415,27 +415,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.0341297,
+     "probability": 0.033879012,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.369
+     "elapsed": 0.355
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.058046278,
+     "probability": 0.057868443,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.356
+     "elapsed": 0.399
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.030350866,
+     "probability": 0.030846192,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.361
+     "elapsed": 0.727
     }
    }
   },
@@ -448,27 +448,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.27899334,
+     "probability": 0.26902378,
      "cost": 0,
      "input_tokens": 84,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.379
+     "elapsed": 0.34
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.73275816,
+     "probability": 0.75150526,
      "cost": 0,
      "input_tokens": 48,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.416
+     "elapsed": 0.366
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.44102243,
+     "probability": 0.45899606,
      "cost": 0,
      "input_tokens": 134,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.378
+     "elapsed": 0.377
     }
    }
   },
@@ -481,27 +481,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.3888501,
+     "probability": 0.38922784,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.409
+     "elapsed": 0.358
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.93049914,
+     "probability": 0.9299587,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.416
+     "elapsed": 0.373
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.45218644,
+     "probability": 0.48292458,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.359
+     "elapsed": 0.391
     }
    }
   },
@@ -514,27 +514,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.07299767,
+     "probability": 0.07215845,
      "cost": 0,
      "input_tokens": 86,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.43
+     "elapsed": 0.382
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.4885839,
+     "probability": 0.49933255,
      "cost": 0,
      "input_tokens": 50,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.359
+     "elapsed": 0.379
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.0453822,
+     "probability": 0.04548566,
      "cost": 0,
      "input_tokens": 136,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.425
+     "elapsed": 0.591
     }
    }
   },
@@ -547,27 +547,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.04637052,
+     "probability": 0.04535774,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.431
+     "elapsed": 0.383
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.056478035,
+     "probability": 0.058620434,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.332
+     "elapsed": 0.365
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.04004135,
+     "probability": 0.03887232,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.39
+     "elapsed": 0.68
     }
    }
   },
@@ -580,27 +580,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.04084088,
+     "probability": 0.04112233,
      "cost": 0,
      "input_tokens": 83,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.341
+     "elapsed": 0.337
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.48657835,
+     "probability": 0.48340148,
      "cost": 0,
      "input_tokens": 47,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.311
+     "elapsed": 0.588
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.03629146,
+     "probability": 0.03592252,
      "cost": 0,
      "input_tokens": 133,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.321
+     "elapsed": 0.417
     }
    }
   },
@@ -613,27 +613,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.05567307,
+     "probability": 0.055854447,
      "cost": 0,
      "input_tokens": 83,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.355
+     "elapsed": 0.361
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.15311575,
+     "probability": 0.15281211,
      "cost": 0,
      "input_tokens": 47,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.661
+     "elapsed": 0.752
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.38989806,
+     "probability": 0.36692265,
      "cost": 0,
      "input_tokens": 133,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.324
+     "elapsed": 0.382
     }
    }
   },
@@ -646,27 +646,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.5716761,
+     "probability": 0.5511222,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.358
+     "elapsed": 0.385
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.78548044,
+     "probability": 0.78476167,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.384
+     "elapsed": 0.37
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.6362145,
+     "probability": 0.6506947,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.333
+     "elapsed": 0.84
     }
    }
   },
@@ -679,27 +679,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.73190886,
+     "probability": 0.732002,
      "cost": 0,
      "input_tokens": 82,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.357
+     "elapsed": 0.365
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.73036665,
+     "probability": 0.7275437,
      "cost": 0,
      "input_tokens": 46,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.37
+     "elapsed": 0.393
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.85845214,
+     "probability": 0.85867035,
      "cost": 0,
      "input_tokens": 132,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.346
+     "elapsed": 0.481
     }
    }
   },
@@ -712,27 +712,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.614985,
+     "probability": 0.6171705,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.576
+     "elapsed": 0.345
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.39193118,
+     "probability": 0.39643127,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.388
+     "elapsed": 0.348
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.873255,
+     "probability": 0.8759956,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.779
+     "elapsed": 0.589
     }
    }
   },
@@ -745,27 +745,27 @@
    "by_variant": {
     "v1_current": {
      "ok": true,
-     "probability": 0.024775818,
+     "probability": 0.024281794,
      "cost": 0,
      "input_tokens": 85,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.341
+     "elapsed": 0.672
     },
     "v2_any_latin": {
      "ok": true,
-     "probability": 0.02105053,
+     "probability": 0.021006698,
      "cost": 0,
      "input_tokens": 49,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.331
+     "elapsed": 0.366
     },
     "v3_lenient_explicit": {
      "ok": true,
-     "probability": 0.026254833,
+     "probability": 0.027376745,
      "cost": 0,
      "input_tokens": 135,
      "model": "respan/span-01-lite-20260925",
-     "elapsed": 0.351
+     "elapsed": 0.357
     }
    }
   }

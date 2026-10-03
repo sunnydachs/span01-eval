@@ -100,6 +100,8 @@ python calibrate.py --synth ../results/tune_v4.json \
 
 - **Pipeline, harness, analysis: fully reproducible** — on the bundled surrogate corpus with no private data.
 - **The exact real-data numbers in `reports/`**: the real corpus is third-party content and stays private. The committed artifacts (`results/public/trackA_anon.json`, anonymized: ids remapped, narration stripped by `scripts/sanitize_results.py`) let anyone re-derive the Track A metrics from the published probabilities, but re-running the model on the original texts is not possible outside this repo.
+- **The threshold sweep (Track B table) also depends on an exemption token from the real corpus**, so without passing it in `SPAN01_EXEMPT` the numbers will not match the article/reports (thr=0.5 gives FP=4 / F1=0.889 only with the real-corpus label). The surrogate corpus (`Kuro`) is a different corpus and yields different numbers.
+- **One full pipeline run costs 167 calls** (Track C 69 + tune v4 23 + Track A 52 + Track D 23; measured in `results/rerun.log`, 2026-09-27 run. Track A grows/shrinks with corpus size).
 - Every report number traces to a JSON in `results/`.
 
 ## Data handling
